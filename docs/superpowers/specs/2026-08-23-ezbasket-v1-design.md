@@ -83,8 +83,13 @@ TypeScript's type checking catches many mistakes at write-time. No heavy automat
 - Custom admin UI for managing products (use Supabase table editor)
 - Automated test suite
 
-## 10. Future evolution notes (not committed, just flagged)
+## 10. Confirmed future roadmap (not part of V1, but explicitly planned)
 
-- Checkout/payments (e.g. Stripe) will likely require: `Order`, `OrderItem` tables, moving the basket server-side or tying it to a session/account, and introducing automated tests.
-- If categories grow complex (filters, hierarchies), promote `category` from free-text to a real `Category` table.
-- If product management outgrows the Supabase table editor (e.g. non-technical staff need a friendlier UI, bulk actions, image uploads), build a custom admin panel.
+The owner has confirmed the intent to grow past V1 into at least:
+
+- **Real payment checkout** (e.g. Stripe) — requires `Order`/`OrderItem` tables and moving the basket from browser-only storage to something tied to a session/account.
+- **Admin UI** — a custom screen for managing products, replacing the Supabase table editor once the catalog/workflow is clearer.
+- **Order history** — requires user accounts/login plus the `Order` tables above.
+- **Automated test suite** — introduced starting with the checkout/payments phase, since money-handling code warrants stronger protection.
+
+These are each their own future spec + plan, built once V1 is live and the catalog has settled — not tackled inside the V1 implementation plan. V1's architecture (real Postgres database, Prisma migrations, a single Next.js codebase) was chosen specifically so each of these can be added incrementally later without a rewrite.
