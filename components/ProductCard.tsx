@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AddToBasketButton } from "@/components/AddToBasketButton";
 
 export type ProductCardData = {
   id: string;
@@ -27,6 +28,15 @@ export function ProductCard({ product }: { product: ProductCardData }) {
         <h2 className="font-semibold">{product.name}</h2>
       </Link>
       <p className="text-gray-700">${product.price.toFixed(2)}</p>
+      <AddToBasketButton
+        product={{
+          productId: product.id,
+          slug: product.slug,
+          name: product.name,
+          price: product.price,
+          imageUrl: product.imageUrl,
+        }}
+      />
     </div>
   );
 }
