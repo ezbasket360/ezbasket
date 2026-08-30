@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useBasket } from "@/lib/basket-context";
+import { formatPrice } from "@/lib/format";
 
 export default function BasketPage() {
   const { items, updateQuantity, removeItem, subtotal } = useBasket();
@@ -30,7 +31,7 @@ export default function BasketPage() {
           >
             <div>
               <p className="font-semibold">{item.name}</p>
-              <p className="text-gray-600">${item.price.toFixed(2)} each</p>
+              <p className="text-gray-600">{formatPrice(item.price)} each</p>
             </div>
             <div className="flex items-center gap-3">
               <input
@@ -53,7 +54,7 @@ export default function BasketPage() {
         ))}
       </div>
       <div className="mt-6 flex items-center justify-between">
-        <p className="text-xl font-bold">Subtotal: ${subtotal.toFixed(2)}</p>
+        <p className="text-xl font-bold">Subtotal: {formatPrice(subtotal)}</p>
         <button
           disabled
           className="cursor-not-allowed rounded bg-gray-300 px-6 py-3 text-gray-500"

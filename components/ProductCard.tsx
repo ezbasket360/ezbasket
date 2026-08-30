@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AddToBasketButton } from "@/components/AddToBasketButton";
+import { formatPrice } from "@/lib/format";
 
 export type ProductCardData = {
   id: string;
@@ -27,7 +28,7 @@ export function ProductCard({ product }: { product: ProductCardData }) {
         </div>
         <h2 className="font-semibold">{product.name}</h2>
       </Link>
-      <p className="text-gray-700">${product.price.toFixed(2)}</p>
+      <p className="text-gray-700">{formatPrice(product.price)}</p>
       <AddToBasketButton
         product={{
           productId: product.id,

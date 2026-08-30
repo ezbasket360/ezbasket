@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { AddToBasketButton } from "@/components/AddToBasketButton";
+import { formatPrice } from "@/lib/format";
 
 export default async function ProductDetailPage({
   params,
@@ -32,7 +33,7 @@ export default async function ProductDetailPage({
       </div>
       <div>
         <h1 className="mb-2 text-2xl font-bold">{product.name}</h1>
-        <p className="mb-4 text-gray-700">${price.toFixed(2)}</p>
+        <p className="mb-4 text-gray-700">{formatPrice(price)}</p>
         <p className="mb-6 text-gray-600">{product.description}</p>
         <AddToBasketButton
           product={{
