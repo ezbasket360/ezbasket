@@ -26,7 +26,7 @@ export function AddToBasketButton({ product, quantity = 1 }: Props) {
   return (
     <button
       onClick={handleClick}
-      className="rounded bg-black px-4 py-2 text-sm text-white"
+      className="w-full rounded bg-black px-4 py-3 text-sm text-white sm:w-auto"
     >
       {added ? "Added!" : "Add to Basket"}
     </button>

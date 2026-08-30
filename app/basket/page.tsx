@@ -27,25 +27,39 @@ export default function BasketPage() {
         {items.map((item) => (
           <div
             key={item.productId}
-            className="flex items-center justify-between border-b border-gray-200 pb-4"
+            className="flex flex-wrap items-center justify-between gap-3 border-b border-gray-200 pb-4"
           >
-            <div>
+            <div className="min-w-0">
               <p className="font-semibold">{item.name}</p>
               <p className="text-gray-600">{formatPrice(item.price)} each</p>
             </div>
-            <div className="flex items-center gap-3">
-              <input
-                type="number"
-                min={1}
-                value={item.quantity}
-                onChange={(e) =>
-                  updateQuantity(item.productId, Number(e.target.value))
-                }
-                className="w-16 rounded border border-gray-300 px-2 py-1"
-              />
+            <div className="flex items-center gap-4">
+              <div className="flex items-center rounded border border-gray-300">
+                <button
+                  onClick={() =>
+                    updateQuantity(item.productId, item.quantity - 1)
+                  }
+                  className="flex h-10 w-10 items-center justify-center text-lg"
+                  aria-label={`Decrease quantity of ${item.name}`}
+                >
+                  −
+                </button>
+                <span className="w-8 text-center tabular-nums">
+                  {item.quantity}
+                </span>
+                <button
+                  onClick={() =>
+                    updateQuantity(item.productId, item.quantity + 1)
+                  }
+                  className="flex h-10 w-10 items-center justify-center text-lg"
+                  aria-label={`Increase quantity of ${item.name}`}
+                >
+                  +
+                </button>
+              </div>
               <button
                 onClick={() => removeItem(item.productId)}
-                className="text-sm text-red-600"
+                className="p-2 text-sm text-red-600"
               >
                 Remove
               </button>
@@ -53,11 +67,11 @@ export default function BasketPage() {
           </div>
         ))}
       </div>
-      <div className="mt-6 flex items-center justify-between">
+      <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xl font-bold">Subtotal: {formatPrice(subtotal)}</p>
         <button
           disabled
-          className="cursor-not-allowed rounded bg-gray-300 px-6 py-3 text-gray-500"
+          className="w-full cursor-not-allowed rounded bg-gray-300 px-6 py-3 text-gray-500 sm:w-auto"
         >
           Checkout — Coming soon
         </button>

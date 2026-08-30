@@ -1,13 +1,5 @@
 import Link from "next/link";
-
-// TODO: replace with EZbasket's real WhatsApp business number.
-// Format: country code + number, digits only (no "+", spaces or dashes). e.g. "919876543210"
-const WHATSAPP_NUMBER = "910000000000";
-const WHATSAPP_MESSAGE =
-  "வணக்கம்! நான் EZbasket-ல் ஆர்டர் செய்ய விரும்புகிறேன்.\n\n(உங்கள் பட்டியலை இங்கே எழுதுங்கள்)";
-const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-  WHATSAPP_MESSAGE,
-)}`;
+import { whatsappHref } from "@/lib/whatsapp";
 
 const promises = [
   {
@@ -57,10 +49,10 @@ export default function HomePage() {
           what your kitchen needs — in Tamil, by WhatsApp, or right here — and we
           pick it with care and bring it to your door.
         </p>
-        <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <div className="mx-auto flex max-w-sm flex-col items-stretch justify-center gap-3 sm:max-w-none sm:flex-row">
           <Link
             href="/products"
-            className="inline-block rounded bg-black px-6 py-3 text-white"
+            className="rounded bg-black px-6 py-3 text-center text-white"
           >
             Browse the shop
           </Link>
@@ -68,9 +60,9 @@ export default function HomePage() {
             href={whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block rounded border border-black px-6 py-3"
+            className="rounded border border-black px-6 py-3 text-center"
           >
-            Order on WhatsApp · தமிழில் ஆர்டர் செய்யுங்கள்
+            Order on WhatsApp
           </a>
         </div>
       </section>

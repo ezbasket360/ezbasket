@@ -12,7 +12,7 @@ export type ProductCardData = {
 
 export function ProductCard({ product }: { product: ProductCardData }) {
   return (
-    <div className="flex flex-col gap-2 rounded border border-gray-200 p-4">
+    <div className="flex flex-col gap-2 rounded border border-gray-200 p-3 sm:p-4">
       <Link href={`/products/${product.slug}`}>
         <div className="mb-2 flex aspect-square items-center justify-center rounded bg-gray-100 text-gray-400">
           {product.imageUrl ? (

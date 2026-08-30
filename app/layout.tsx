@@ -1,8 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { BottomNav } from "@/components/BottomNav";
+import { InstallHint } from "@/components/InstallHint";
 import { BasketProvider } from "@/lib/basket-context";
 
 const geistSans = Geist({
@@ -17,7 +19,23 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "EZbasket",
-  description: "EZbasket online store",
+  description:
+    "Your household's monthly provisions, hand-picked and delivered — ordered in Tamil however you like.",
+  appleWebApp: {
+    capable: true,
+    title: "EZbasket",
+    statusBarStyle: "default",
+  },
+  icons: {
+    apple: "/apple-touch-icon.png",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#171717",
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -26,13 +44,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="flex min-h-full flex-col">
         <BasketProvider>
+          <InstallHint />
           <Header />
-          <main className="mx-auto max-w-5xl px-4 py-8 flex-1 w-full">
+          <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-8">
             {children}
           </main>
           <Footer />
+          <BottomNav />
         </BasketProvider>
       </body>
     </html>
